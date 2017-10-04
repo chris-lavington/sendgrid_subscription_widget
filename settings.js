@@ -1,5 +1,5 @@
 // Change the url to the domain of your app
-exports.url = 'https://git.heroku.com/somersetwood-splash-signup.git';
+exports.url = 'https://somersetwood-splash-signup.herokuapp.com';
 
 exports.senderEmail = "chris.lavington@gmail.com";
 exports.senderName = "Chris Lavington";
