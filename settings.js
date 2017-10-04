@@ -2,7 +2,7 @@
 exports.url = 'https://somersetwood-splash-signup.herokuapp.com';
 
 exports.senderEmail = "chris.lavington@gmail.com";
-exports.senderName = "Chris Lavington";
+exports.senderName = "Somerset & Wood Fine Art";
 
 // set 'exports.listId = null' to add contact to all contacts, but no specific list
 // or a string with the listId to add to a specific list
