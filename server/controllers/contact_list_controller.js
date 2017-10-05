@@ -144,25 +144,25 @@ exports.sendConfirmation = (req, res, next) => {
 }
 
 // Send offer code to customer
-// exports.sendOfferCode = (req, res, next) => {
-// 	var request = sg.emptyRequest({
-// 		method: 'POST',
-// 		path: '/v3/mail/send',
-// 		body: prepareOfferCodeEmail(req.body)
-// 	});
+exports.sendOfferCode = (req, res, next) => {
+	var request = sg.emptyRequest({
+		method: 'POST',
+		path: '/v3/mail/send',
+		body: prepareOfferCodeEmail(req.body)
+	});
 
-// 	sg.API(request, function(error, response) {
-// 		if (error) {
-// 			console.log('Error response received');
-// 		}
+	sg.API(request, function(error, response) {
+		if (error) {
+			console.log('Error response received');
+		}
 
-// 		if (response.statusCode >= 200 && response.statusCode < 300) {
-// 			res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
-// 		} else {
-// 			res.sendFile(path.join(__dirname, '../static/error.html'));
-// 		}
-// 	});
-// }
+		if (response.statusCode >= 200 && response.statusCode < 300) {
+			res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
+		} else {
+			res.sendFile(path.join(__dirname, '../static/error.html'));
+		}
+	});
+}
 
 // Create new contact and add contact to given list
 exports.addUser = function(req, res, next) {
