@@ -164,7 +164,7 @@ exports.sendOfferCode = (req, res, next) => {
 			res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
 		} else {
 			console.log('status code:' + response.statusCode);
-			console.log(req.path, body);
+			console.log(response.body);
 			res.sendFile(path.join(__dirname, '../static/error2.html'));
 		}
 	});
