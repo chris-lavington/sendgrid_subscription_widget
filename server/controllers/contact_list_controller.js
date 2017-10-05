@@ -70,7 +70,7 @@ function prepareOfferCodeEmail(reqBody) {
 	      	time_sent: String(Date.now()),
 	      },
 	      substitutions: {
-	      	offer_code: offerCode,
+	      	offer_code: offerCode
 	      }
 	    },
 	  ],
