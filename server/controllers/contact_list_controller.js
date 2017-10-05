@@ -163,7 +163,7 @@ exports.sendOfferCode = (req, res, next) => {
 		if (response.statusCode >= 200 && response.statusCode < 300) {
 			res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
 		} else {
-			console.log(response.statusCode);
+			console.log('status code:' + response.statusCode);
 			res.sendFile(path.join(__dirname, '../static/error2.html'));
 		}
 	});
