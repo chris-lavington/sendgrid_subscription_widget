@@ -153,7 +153,7 @@ exports.sendOfferCode = (req, res, next) => {
 
 	sg.API(request, function(error, response) {
 		if (error) {
-			console.log('Error response received');
+			console.log('sendOfferCode Error response received');
 		}
 
 		if (response.statusCode >= 200 && response.statusCode < 300) {
