@@ -53,7 +53,7 @@ function prepareConfirmationEmail(reqBody) {
 
 function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
-	const offerCode = "zzz"
+	const offerCode = "zzz";
 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
 
 	var emailBody = {
@@ -65,8 +65,12 @@ function prepareOfferCodeEmail(reqBody) {
 	        }
 	      ],
 	      subject: subject,
+	      custom_args: {
+	      	type: optIn,
+	      	time_sent: String(Date.now()),
+	      },
 	      substitutions: {
-	      	offer_code: offerCode
+	      	offer_code: offerCode,
 	      }
 	    },
 	  ],
@@ -86,7 +90,7 @@ function prepareOfferCodeEmail(reqBody) {
 	if (templateId) emailBody.template_id = templateId;
 
 	for (key in reqBody) {
-		emailBody.personalizations[0] = reqBody[key];
+		emailBody.personalizations[0].custom_args[key] = reqBody[key];
 	}
 
 	return emailBody;
