@@ -51,46 +51,46 @@ function prepareConfirmationEmail(reqBody) {
 	return emailBody;
 }
 
-// function prepareOfferCodeEmail(reqBody) {
-// 	const subject = "Your Somerset & Wood Offer Code";
-// 	const offerCode = "zzz"
-// 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode + ;
+function prepareOfferCodeEmail(reqBody) {
+	const subject = "Your Somerset & Wood Offer Code";
+	const offerCode = "zzz"
+	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode + ;
 
-// 	var emailBody = {
-// 	  personalizations: [
-// 	    {
-// 	      to: [
-// 	        {
-// 	          email: reqBody.email,
-// 	        }
-// 	      ],
-// 	      subject: subject,
-// 	      substitutions: {
-// 	      	offer_code: offerCode
-// 	      }
-// 	    },
-// 	  ],
-// 	  from: {
-// 	    email: Settings.senderEmail,
-// 	    name: Settings.senderName,
-// 	  },
-// 	  content: [
-// 	    {
-// 	      type: "text/html",
-// 	      value: mailText,
-// 	    }
-// 	  ]
-// 	}
+	var emailBody = {
+	  personalizations: [
+	    {
+	      to: [
+	        {
+	          email: reqBody.email,
+	        }
+	      ],
+	      subject: subject,
+	      substitutions: {
+	      	offer_code: offerCode
+	      }
+	    },
+	  ],
+	  from: {
+	    email: Settings.senderEmail,
+	    name: Settings.senderName,
+	  },
+	  content: [
+	    {
+	      type: "text/html",
+	      value: mailText,
+	    }
+	  ]
+	}
 
-// 	const templateId = Settings.templateId;
-// 	if (templateId) emailBody.template_id = templateId;
+	const templateId = Settings.templateId;
+	if (templateId) emailBody.template_id = templateId;
 
-// 	for (key in reqBody) {
-// 		emailBody.personalizations[0] = reqBody[key];
-// 	}
+	for (key in reqBody) {
+		emailBody.personalizations[0] = reqBody[key];
+	}
 
-// 	return emailBody;
-// }
+	return emailBody;
+}
 
 function prepareNotificationEmail(reqBody) {
 	const subject = "New email signup";
