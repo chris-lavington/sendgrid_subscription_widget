@@ -51,6 +51,47 @@ function prepareConfirmationEmail(reqBody) {
 	return emailBody;
 }
 
+function prepareOfferCodeEmail(reqBody) {
+	const subject = "Your Somerset & Wood Offer Code";
+	const offerCode = "zzz"
+	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode + ;
+
+	var emailBody = {
+	  personalizations: [
+	    {
+	      to: [
+	        {
+	          email: reqBody.email,
+	        }
+	      ],
+	      subject: subject,
+	      substitutions: {
+	      	offer_code: offerCode
+	      }
+	    },
+	  ],
+	  from: {
+	    email: Settings.senderEmail,
+	    name: Settings.senderName,
+	  },
+	  content: [
+	    {
+	      type: "text/html",
+	      value: mailText,
+	    }
+	  ]
+	}
+
+	//const templateId = Settings.templateId;
+	//if (templateId) emailBody.template_id = templateId;
+
+	for (key in reqBody) {
+		emailBody.personalizations[0] = reqBody[key];
+	}
+
+	return emailBody;
+}
+
 function prepareNotificationEmail(reqBody) {
 	const subject = "New email signup";
 	const mailText = "A new person just confirmed they would look to receive your emails via your email subscription widget.<br/><b>Name: </b>" + reqBody.first_name + " " + reqBody.last_name + "<br/><b>Email: </b>" + reqBody.email;
@@ -99,6 +140,27 @@ exports.sendConfirmation = (req, res, next) => {
 		} else {
 			res.sendFile(path.join(__dirname, '../static/error.html'));
 		}
+	});
+}
+
+// Send offer code to customer
+exports.sendOfferCode = (req, res, next) => {
+	var request = sg.emptyRequest({
+		method: 'POST',
+		path: '/v3/mail/send',
+		body: prepareOfferCodeEmail(req.body)
+	});
+
+	sg.API(request, function(error, response) {
+		if (error) {
+			console.log('Error response received');
+		}
+
+// 		if (response.statusCode >= 200 && response.statusCode < 300) {
+// 			res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
+// 		} else {
+// 			res.sendFile(path.join(__dirname, '../static/error.html'));
+// 		}
 	});
 }
 
