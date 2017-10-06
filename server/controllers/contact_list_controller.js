@@ -149,30 +149,6 @@ exports.sendConfirmation = (req, res, next) => {
 	});
 }
 
-// Send offer code to customer
-exports.sendOfferCode = (req, res, next) => {
-	var request = sg.emptyRequest({
-		method: 'POST',
-		path: '/v3/mail/send',
-		body: prepareOfferCodeEmail(req.body)
-	});
-
-	sg.API(request, function(error, response) {
-		if (error) {
-			console.log('sendOfferCode Error response received');
-		}
-
-		if (response.statusCode >= 200 && response.statusCode < 300) {
-			//res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
-			res.send("Hero!");
-		} else {
-			console.log('status code:' + response.statusCode);
-			console.log(response.body);
-			res.sendFile(path.join(__dirname, '../static/error2.html'));
-		}
-	});
-}
-
 // Create new contact and add contact to given list
 exports.addUser = function(req, res, next) {
 	addUserToList(req.body[0], function() {
@@ -192,6 +168,19 @@ exports.addUser = function(req, res, next) {
 				}
 			});
 		}
+
+		// Send offer code to customer
+		var requestCode = sg.emptyRequest({
+			method: 'POST',
+			path: '/v3/mail/send',
+			body: prepareOfferCodeEmail(req.body[0])
+		});
+
+		sg.API(requestCode, function(error, response) {
+			if (error) {
+				console.log('sendOfferCode Error response received');
+			}
+		});
 
 		res.sendStatus(200);
 	});
