@@ -62,8 +62,8 @@ console.log('regBod: ' + reqBody);
 	    {
 	      to: [
 	        {
-	        email: reqBody.email,
-		//email: "chris.lavington@gmail.com",
+	        //email: reqBody.email,
+		email: "chris.lavington@gmail.com",
 	        }
 	      ],
 	      subject: subject,
@@ -163,7 +163,8 @@ exports.sendOfferCode = (req, res, next) => {
 		}
 
 		if (response.statusCode >= 200 && response.statusCode < 300) {
-			res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
+			//res.sendFile(path.join(__dirname, '../static/check-inbox.html'));
+			res.send("Hero!");
 		} else {
 			console.log('status code:' + response.statusCode);
 			console.log(response.body);
