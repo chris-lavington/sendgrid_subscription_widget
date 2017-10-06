@@ -302,13 +302,16 @@ function getOfferCode() {
 	};
 
 	var options = {
-	    url: 'https://lovelycards.co.uk/index.php/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=2',
+	    //url: 'https://lovelycards.co.uk/index.php/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=2',
+	    url: 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCartRule/?ruleId=2',
 	    headers: headers
 	};
 
 	function callback(error, response, body) {
 	    if (!error && response.statusCode == 200) {
 		console.log('GET OFFER CODE: ' + body);
+	    } elseif (error) {
+	    	console.error('GET OFFER CODE ERROR: ' + response);
 	    }
 	}
 
