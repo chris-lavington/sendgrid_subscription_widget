@@ -178,6 +178,7 @@ exports.addUser = function(req, res, next) {
 		sg.API(requestCode, function(error, response) {
 			if (error) {
 				console.log('sendOfferCode Error response received');
+				console.error( 'SENDGRID ERROR', error.response );
 				console.log('error: ' + error.stack);
 			}
 		});
