@@ -174,6 +174,8 @@ exports.addUser = function(req, res, next) {
 			path: '/v3/mail/send',
 			body: prepareOfferCodeEmail(req.body[0])
 		});
+		
+		console.log('request code: ' + requestCode);
 
 		sg.API(requestCode, function(error, response) {
 			if (error) {
