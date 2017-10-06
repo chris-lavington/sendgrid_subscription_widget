@@ -55,7 +55,8 @@ function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
 	const offerCode = "zzz";
 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
-console.log('regBod: ' + reqBody.email);
+console.log('regBod: ' + reqBody);
+	console.log('regBod.email: ' + reqBody.email);
 	var emailBody = {
 	  personalizations: [
 	    {
