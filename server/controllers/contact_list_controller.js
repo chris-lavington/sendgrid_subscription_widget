@@ -86,10 +86,6 @@ function prepareOfferCodeEmail(reqBody) {
 	const templateId = Settings.templateId;
 	if (templateId) emailBody.template_id = templateId;
 
-	for (key in reqBody) {
-		emailBody.personalizations[0] = reqBody[key];
-	}
-
 	return emailBody;
 }
 
