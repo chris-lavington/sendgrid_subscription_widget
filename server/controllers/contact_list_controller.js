@@ -87,7 +87,7 @@ function prepareOfferCodeEmail(reqBody) {
 	if (templateId) emailBody.template_id = templateId;
 
 	for (key in reqBody) {
-		emailBody.personalizations[0].custom_args[key] = reqBody[key];
+		emailBody.personalizations[0] = reqBody[key];
 	}
 
 	return emailBody;
