@@ -313,6 +313,7 @@ function getOfferCode() {
 	}
 
 	request(options, callback);
+	console.log(request);
 }
 
 function stringInArray(string, array) {
