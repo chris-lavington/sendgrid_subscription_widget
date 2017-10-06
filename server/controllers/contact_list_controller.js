@@ -302,7 +302,7 @@ function getOfferCode() {
 	};
 
 	var options = {
-	    url: 'https://lovelycards.co.uk/index.php/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=01',
+	    url: 'https://lovelycards.co.uk/index.php/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=2',
 	    headers: headers
 	};
 
