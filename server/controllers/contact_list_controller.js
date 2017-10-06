@@ -55,7 +55,6 @@ function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
 	const offerCode = "zzz";
 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
-console.log('regBod: ' + reqBody);
 	console.log('regBod.email: ' + reqBody.email);
 	var emailBody = {
 	  personalizations: [
@@ -179,6 +178,7 @@ exports.addUser = function(req, res, next) {
 		sg.API(requestCode, function(error, response) {
 			if (error) {
 				console.log('sendOfferCode Error response received');
+				console.log(error + 'sendOfferCode Error response received');
 			}
 		});
 
