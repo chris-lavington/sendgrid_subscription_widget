@@ -167,7 +167,7 @@ exports.addUser = function(req, res, next) {
 				}
 			});
 		}
-
+console.log('req.body[0]: ' + req.body[0]);
 		// Send offer code to customer
 		var request = sg.emptyRequest({
 			method: 'POST',
