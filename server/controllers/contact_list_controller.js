@@ -310,8 +310,8 @@ function getOfferCode() {
 	function callback(error, response, body) {
 	    if (!error && response.statusCode == 200) {
 		console.log('GET OFFER CODE: ' + body);
-	    } elseif (error) {
-	    	console.error('GET OFFER CODE ERROR: ' + response);
+	    } else {
+	    	console.error(response);
 	    }
 	}
 
