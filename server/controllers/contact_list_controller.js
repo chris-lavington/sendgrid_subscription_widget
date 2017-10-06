@@ -169,19 +169,18 @@ exports.addUser = function(req, res, next) {
 		}
 
 		// Send offer code to customer
-		var requestCode = sg.emptyRequest({
+		var request = sg.emptyRequest({
 			method: 'POST',
 			path: '/v3/mail/send',
 			body: prepareOfferCodeEmail(req.body[0])
 		});
 		
-		console.log('request code: ' + requestCode);
+		console.log('request: ' + request.body);
 
-		sg.API(requestCode, function(error, response) {
+		sg.API(request, function(error, response) {
 			if (error) {
 				console.log('sendOfferCode Error response received');
 				console.error( 'SENDGRID ERROR', response );
-				console.log(response.statusCode);
 			}
 		});
 
