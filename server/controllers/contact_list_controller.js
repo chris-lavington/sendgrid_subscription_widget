@@ -297,7 +297,7 @@ function getOfferCode() {
 	var request = require('request');
 
 	var headers = {
-	    '“Content-Type': 'application/json',
+	    '“Content-Type': '',
 	    'Authorization': 'Bearer vbnf3hjklp5iuytre'
 	};
 
