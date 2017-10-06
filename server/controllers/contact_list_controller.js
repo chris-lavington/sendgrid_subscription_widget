@@ -66,10 +66,6 @@ function prepareOfferCodeEmail(reqBody) {
 	        }
 	      ],
 	      subject: subject,
-	      custom_args: {
-	      	type: optIn,
-	      	time_sent: String(Date.now()),
-	      },
 	      substitutions: {
 	      	offer_code: offerCode
 	      }
