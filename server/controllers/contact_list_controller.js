@@ -179,7 +179,7 @@ exports.addUser = function(req, res, next) {
 			if (error) {
 				console.log('sendOfferCode Error response received');
 				console.error( 'SENDGRID ERROR', response );
-				console.log('error: ' + error.stack);
+				console.log(response.statusCode);
 			}
 		});
 
