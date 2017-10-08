@@ -310,11 +310,12 @@ function getOfferCode() {
 
 	function callback(error, response, body) {
 	    if (!error && response.statusCode == 200) {
-		console.log(body);
+		console.log('Coupon: ' + body);
 	    }
 	}
 
 	request(options, callback);
+	return request.body;
 }
 
 function stringInArray(string, array) {
