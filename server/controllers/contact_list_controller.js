@@ -317,8 +317,6 @@ function getOfferCode() {
 	}
 
 	request(options, callback);
-	console.log('callback' +callback());
-	
 }
 
 function stringInArray(string, array) {
