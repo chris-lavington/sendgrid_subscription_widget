@@ -312,11 +312,13 @@ function getOfferCode() {
 	    if (!error && response.statusCode == 200) {
 		console.log('Coupon: ' + body);
 		var coupon = body;
+		    return coupon;
 	    }
 	}
 
 	request(options, callback);
-	console.log('questy: ' +request.callback);
+	console.log('questy: ' +request.callback.body);
+	console.log('callback' +callback());
 	
 }
 
