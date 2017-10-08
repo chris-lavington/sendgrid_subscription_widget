@@ -298,7 +298,7 @@ function getOfferCode() {
 
 	var headers = {
 	    '“Content-Type': '',
-	    'Authorization': '95owdrvyau73l0vsde8h8lr67q5x4uxv mqaiamss9ritahwge13as021mqxn8pim'
+	    'Authorization': 'admin 55cancriE'
 	};
 
 	var options = {
