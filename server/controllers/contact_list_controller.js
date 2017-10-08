@@ -315,7 +315,7 @@ function getOfferCode() {
 	}
 
 	request(options, callback);
-	console.log(request.body);
+	console.log('request: 'request.body);
 	return request.body;
 }
 
