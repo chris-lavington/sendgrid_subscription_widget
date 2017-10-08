@@ -296,7 +296,7 @@ function getOfferCode() {
 
 	var headers = {
 	    '“Content-Type': 'application/json',
-	    'Authorization': 'admin 55cancriE'
+	    'Authorization': 'Bearer wijraa4ky8l23f4vss8oj3swdumcxm66'
 	};
 
 	var options = {
