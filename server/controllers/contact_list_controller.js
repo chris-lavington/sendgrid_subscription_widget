@@ -55,14 +55,12 @@ function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
 	const offerCode = getOfferCode();
 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
-	console.log('regBod.email: ' + reqBody.email);
 	var emailBody = {
 	  personalizations: [
 	    {
 	      to: [
 	        {
 	        email: reqBody.email,
-		//email: "chris.lavington@gmail.com",
 	        }
 	      ],
 	      subject: subject,
@@ -297,13 +295,13 @@ function getOfferCode() {
 	var request = require('request');
 
 	var headers = {
-	    '“Content-Type': '',
+	    '“Content-Type': 'application/json',
 	    'Authorization': 'admin 55cancriE'
 	};
 
 	var options = {
 	    //url: 'https://lovelycards.co.uk/index.php/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=2',
-	    url: 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCartRule/?ruleId=2',
+	    url: 'https://lovelycards.co.uk/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=2',
 	    headers: headers
 	};
 
@@ -311,7 +309,7 @@ function getOfferCode() {
 	    if (!error && response.statusCode == 200) {
 		console.log('GET OFFER CODE: ' + body);
 	    } else {
-	    	console.error(response);
+	    	console.error('offer error: ' + response);
 	    }
 	}
 
