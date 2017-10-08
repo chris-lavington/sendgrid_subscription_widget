@@ -308,15 +308,12 @@ function getOfferCode() {
 	    body: dataString
 	};
 
-	function callback(error, response, body) {
+	request(options, function(error, response, body) {
 	    if (!error && response.statusCode == 200) {
 		console.log('Coupon: ' + body);
-		var coupon = body;
-		    return coupon;
+		return body;
 	    }
-	}
-
-	request(options, callback);
+	});
 }
 
 function stringInArray(string, array) {
