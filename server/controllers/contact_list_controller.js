@@ -295,26 +295,26 @@ function getOfferCode() {
 	var request = require('request');
 
 	var headers = {
-	    '“Content-Type': 'application/json',
+	    'Content-type': 'application/json',
 	    'Authorization': 'Bearer wijraa4ky8l23f4vss8oj3swdumcxm66'
 	};
 
+	var dataString = '{"ruleId":"2","custId":"0"}';
+
 	var options = {
-	    //url: 'https://lovelycards.co.uk/index.php/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=2',
-	    url: 'https://lovelycards.co.uk/rest/V1//bangerkuwranger/couponcode/getCartRule/?ruleId=2',
-	    headers: headers
+	    url: 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/',
+	    method: 'POST',
+	    headers: headers,
+	    body: dataString
 	};
 
 	function callback(error, response, body) {
 	    if (!error && response.statusCode == 200) {
-		console.log('GET OFFER CODE: ' + body);
-	    } else {
-	    	console.error('offer error: ' + response);
+		console.log(body);
 	    }
 	}
 
 	request(options, callback);
-	console.log('offer code output: ' + request);
 }
 
 function stringInArray(string, array) {
