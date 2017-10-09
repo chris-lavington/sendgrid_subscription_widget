@@ -52,23 +52,9 @@ function prepareConfirmationEmail(reqBody) {
 }
 
 function prepareOfferCodeEmail(reqBody) {
-	//var Promise = require("promise");
-	let cleanTheRoom = function() {
-	  return new Promise(function(resolve, reject) {
-	    resolve('Cleaned the Room, ');
-	  });
-	};
-
-	let removedTheGarbage = function(message) {
-	  return new Promise(function(resolve, reject) {
-	    resolve(message + 'removed the garbage, ');
-	  });
-	};
-	cleanTheRoom()
-	  .then(removedTheGarbage)
-	  .then(function(message) {
-	    console.log('This is the message\n' + message);
-	  });
+	var p = new Promise((resolve, reject) => resolve(5));  
+	p.then((val) => console.log("fulfilled:", val),  
+       (err) => console.log("rejected: ", err));
 }
 
 function prepareNotificationEmail(reqBody) {
