@@ -53,7 +53,7 @@ function prepareConfirmationEmail(reqBody) {
 
 function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
-	var offerCode = makeOfferCode(function(result) {return result;});
+	var offerCode = makeOfferCode(function(result) { console.log('makeResult: ' +result;});
 console.log('make offer code func: ' +offerCode);
 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
 	var emailBody = {
@@ -165,8 +165,6 @@ exports.addUser = function(req, res, next) {
 			path: '/v3/mail/send',
 			body: prepareOfferCodeEmail(req.body[0])
 		});
-		
-		console.log('request: ' + request.body);
 
 		sg.API(request, function(error, response) {
 			if (error) {
