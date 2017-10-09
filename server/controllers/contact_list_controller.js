@@ -53,7 +53,7 @@ function prepareConfirmationEmail(reqBody) {
 
 function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
-	const offerCode = makeOfferCode(function(error, result){if(error){console.error(error);} else {return result;}});
+	const offerCode = makeOfferCode(function(result) {return result;});
 console.log('make offer code func: ' +offerCode);
 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
 	var emailBody = {
@@ -312,9 +312,9 @@ function makeOfferCode(callback) {
 	request(options, function(error, response, body) {
 	    if (!error && response.statusCode == 200) {
 		console.log('Coupon: ' + body);
-		callback(null,body);
+		callback(body);
 	    } else if(error) {
-	    	callback(error,null);
+	    	callback(error);
 	    }
 	});
 }
