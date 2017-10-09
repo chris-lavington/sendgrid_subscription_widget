@@ -55,19 +55,14 @@ function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
 
 	new Promise(function(resolve, reject) {
-console.log('inside promise!');
+
 	  var offerCode = makeOfferCode(function(result) { 
 					console.log('makeResult: ' +result);
 					return result;			       
 				});
-	  resolve(offerCode);
-console.log('offer code: ' +offerCode)
-	}).then(function(offerCode) { // (**)
+	  return offerCode;
 
-	  var mailText = "Thanks for signing up! Here is your offer code to use during checkout: " +offerCode;
-	  return mailText;
-console.log('mailText: ' +mailText);
-	}).then(function(mailText) { // (***)
+	}).then(function(offerCode) { // (***)
 
 	  var emailBody = {
 		  personalizations: [
@@ -90,7 +85,7 @@ console.log('mailText: ' +mailText);
 		  content: [
 		    {
 		      type: "text/html",
-		      value: mailText,
+		      value: "Thanks for signing up! Here is your offer code to use during checkout: " +offerCode,
 		    }
 		  ]
 		};
