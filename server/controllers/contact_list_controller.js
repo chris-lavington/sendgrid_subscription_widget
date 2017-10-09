@@ -57,13 +57,12 @@ function prepareOfferCodeEmail(reqBody) {
 
 	new Promise(function(resolve, reject) {
 
-	  var offerCode = makeOfferCode(function(result) { 
-					console.log('makeResult: ' +result);
-					return result;			       
-				});
-	  resolve(offerCode.result);
-console.log('code code code!' +offerCode);
-	}).then(function(offerCode) { // (***)
+	  makeOfferCode(function(result) { 
+		console.log('makeResult: ' +result);
+		resolve(result);			       
+	   });
+console.log('code code code!' +result);
+	}).then(function(result) { // (***)
 
 	  var emailBody = {
 		  personalizations: [
