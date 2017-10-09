@@ -53,50 +53,17 @@ function prepareConfirmationEmail(reqBody) {
 
 function prepareOfferCodeEmail(reqBody) {
 	var Promise = require("promise");
-	const subject = "Your Somerset & Wood Offer Code";
+	let cleanTheRoom = function() {
+	  return new Promise(function(resolve, reject) {
+	    resolve('Cleaned the Room, ');
+	  });
+	};
 
-	new Promise(function(resolve, reject) {
-
-	  makeOfferCode(function(result) { 
-		console.log('makeResult: ' +result);
-		resolve(result);			       
-	   });
-console.log('code code code!' +result);
-	}).then(function(result) { // (***)
-
-	  var emailBody = {
-		  personalizations: [
-		    {
-		      to: [
-		        {
-		        email: reqBody.email,
-		        }
-		      ],
-		      subject: "Your Somerset & Wood Offer Code",
-		      substitutions: {
-		      	offer_code: offerCode
-		      }
-		    },
-		  ],
-		  from: {
-		    email: Settings.senderEmail,
-		    name: Settings.senderName,
-		  },
-		  content: [
-		    {
-		      type: "text/html",
-		      value: "Thanks for signing up! Here is your offer code to use during checkout: " +offerCode,
-		    }
-		  ]
-		};
-		//return emailBody;
-
-	});
-
-	const templateId = Settings.templateId;
-	if (templateId) emailBody.template_id = templateId;
-
-	return emailBody;
+	let removedTheGarbage = function(message) {
+	  return new Promise(function(resolve, reject) {
+	    resolve(message + 'removed the garbage, ');
+	  });
+	};
 }
 
 function prepareNotificationEmail(reqBody) {
