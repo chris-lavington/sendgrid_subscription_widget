@@ -52,7 +52,7 @@ function prepareConfirmationEmail(reqBody) {
 }
 
 function prepareOfferCodeEmail(reqBody) {
-	var Promise = require("promise");
+	//var Promise = require("promise");
 	let cleanTheRoom = function() {
 	  return new Promise(function(resolve, reject) {
 	    resolve('Cleaned the Room, ');
