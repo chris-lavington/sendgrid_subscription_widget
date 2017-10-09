@@ -89,14 +89,14 @@ console.log('code code code!' +result);
 		    }
 		  ]
 		};
-		return emailBody;
+		//return emailBody;
 
 	});
 
 	const templateId = Settings.templateId;
 	if (templateId) emailBody.template_id = templateId;
 
-	//return emailBody;
+	return emailBody;
 }
 
 function prepareNotificationEmail(reqBody) {
