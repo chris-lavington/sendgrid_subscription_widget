@@ -61,7 +61,7 @@ function prepareOfferCodeEmail(reqBody) {
 					console.log('makeResult: ' +result);
 					return result;			       
 				});
-	  resolve(offerCode);
+	  resolve(offerCode.result);
 console.log('code code code!' +offerCode);
 	}).then(function(offerCode) { // (***)
 
