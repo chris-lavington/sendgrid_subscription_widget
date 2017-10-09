@@ -53,40 +53,50 @@ function prepareConfirmationEmail(reqBody) {
 
 function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
-	var offerCode = makeOfferCode(function(result) { 
-				console.log('makeResult: ' +result);
-				return result;			       
-			});
-	
-		console.log('blade runner: ' + offerCode)
-		const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
-	
-	
-	var emailBody = {
-	  personalizations: [
-	    {
-	      to: [
-	        {
-	        email: reqBody.email,
-	        }
-	      ],
-	      subject: subject,
-	      substitutions: {
-	      	offer_code: offerCode
-	      }
-	    },
-	  ],
-	  from: {
-	    email: Settings.senderEmail,
-	    name: Settings.senderName,
-	  },
-	  content: [
-	    {
-	      type: "text/html",
-	      value: mailText,
-	    }
-	  ]
-	}
+
+	new Promise(function(resolve, reject) {
+
+	  var offerCode = makeOfferCode(function(result) { 
+					console.log('makeResult: ' +result);
+					return result;			       
+				});
+	  resolve(offerCode);
+
+	}).then(function(offerCode) { // (**)
+
+	  var mailText = "Thanks for signing up! Here is your offer code to use during checkout: " +offerCode;
+	  return mailText;
+
+	}).then(function(mailText) { // (***)
+
+	  var emailBody = {
+		  personalizations: [
+		    {
+		      to: [
+		        {
+		        email: reqBody.email,
+		        }
+		      ],
+		      subject: "Your Somerset & Wood Offer Code",
+		      substitutions: {
+		      	offer_code: offerCode
+		      }
+		    },
+		  ],
+		  from: {
+		    email: Settings.senderEmail,
+		    name: Settings.senderName,
+		  },
+		  content: [
+		    {
+		      type: "text/html",
+		      value: mailText,
+		    }
+		  ]
+		};
+		return emailBody;
+
+	});
 
 	const templateId = Settings.templateId;
 	if (templateId) emailBody.template_id = templateId;
