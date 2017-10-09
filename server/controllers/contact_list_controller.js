@@ -52,7 +52,10 @@ function prepareConfirmationEmail(reqBody) {
 }
 
 function prepareOfferCodeEmail(reqBody) {
-	var p = new Promise((resolve, reject) => resolve(makeOfferCode()));  
+	var p = new Promise((resolve, reject) =>  makeOfferCode(function(result) { 
+		console.log('makeResult: ' +result);
+		resolve(result);			       
+	   });  
 	p.then((val) => console.log("fulfilled:", val),  
        (err) => console.log("rejected: ", err));
 	return p;
