@@ -66,7 +66,6 @@ function prepareOfferCodeEmail(reqBody) {
 	};
 	cleanTheRoom()
 	  .then(removedTheGarbage)
-	  .then(getIcecream)
 	  .then(function(message) {
 	    console.log('This is the message\n' + message);
 	  });
