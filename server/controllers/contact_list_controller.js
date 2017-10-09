@@ -292,6 +292,12 @@ function formatUrl(url) {
 }
 
 function getOfferCode() {
+	makeOfferCode(function(d) {
+		return d;
+	});
+}
+
+function makeOfferCode(callback) {
 	var request = require('request');
 
 	var headers = {
@@ -311,7 +317,7 @@ function getOfferCode() {
 	request(options, function(error, response, body) {
 	    if (!error && response.statusCode == 200) {
 		console.log('Coupon: ' + body);
-		return body;
+		callback(body);
 	    }
 	});
 }
