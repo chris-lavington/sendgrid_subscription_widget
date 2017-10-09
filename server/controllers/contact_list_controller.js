@@ -52,6 +52,7 @@ function prepareConfirmationEmail(reqBody) {
 }
 
 function prepareOfferCodeEmail(reqBody) {
+	var Promise = require("promise");
 	const subject = "Your Somerset & Wood Offer Code";
 
 	new Promise(function(resolve, reject) {
