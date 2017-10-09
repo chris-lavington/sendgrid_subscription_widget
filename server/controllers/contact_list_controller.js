@@ -57,10 +57,10 @@ function prepareOfferCodeEmail(reqBody) {
 				console.log('makeResult: ' +result);
 				return result;			       
 			});
-	if(offerCode !='undefined') {
+	
 		console.log('blade runner: ' + offerCode)
 		const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
-	}
+	
 	
 	var emailBody = {
 	  personalizations: [
