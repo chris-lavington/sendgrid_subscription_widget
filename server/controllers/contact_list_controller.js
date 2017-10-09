@@ -64,6 +64,12 @@ function prepareOfferCodeEmail(reqBody) {
 	    resolve(message + 'removed the garbage, ');
 	  });
 	};
+	cleanTheRoom()
+	  .then(removedTheGarbage)
+	  .then(getIcecream)
+	  .then(function(message) {
+	    console.log('This is the message\n' + message);
+	  });
 }
 
 function prepareNotificationEmail(reqBody) {
