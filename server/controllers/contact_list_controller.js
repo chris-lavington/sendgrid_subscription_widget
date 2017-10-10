@@ -53,10 +53,7 @@ function prepareConfirmationEmail(reqBody) {
 
 function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
-	var offerCode = makeOfferCode(function(result) { 
-				console.log('makeResult: ' +result);
-				return result;			       
-			});
+	var offerCode = function makeOfferCode(){};
 	
 		console.log('blade runner: ' + offerCode)
 		const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
