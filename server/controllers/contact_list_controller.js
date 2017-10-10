@@ -52,13 +52,46 @@ function prepareConfirmationEmail(reqBody) {
 }
 
 function prepareOfferCodeEmail(reqBody) {
-	var p = new Promise((resolve, reject) =>  makeOfferCode(function(result) { 
-		console.log('makeResult: ' +result);
-		resolve(result);			       
-	   });  
-	p.then((val) => console.log("fulfilled:", val),  
-       (err) => console.log("rejected: ", err));
-	return p;
+	const subject = "Your Somerset & Wood Offer Code";
+	var offerCode = makeOfferCode(function(result) { 
+				console.log('makeResult: ' +result);
+				return result;			       
+			});
+	
+		console.log('blade runner: ' + offerCode)
+		const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
+	
+	
+	var emailBody = {
+	  personalizations: [
+	    {
+	      to: [
+	        {
+	        email: reqBody.email,
+	        }
+	      ],
+	      subject: subject,
+	      substitutions: {
+	      	offer_code: offerCode
+	      }
+	    },
+	  ],
+	  from: {
+	    email: Settings.senderEmail,
+	    name: Settings.senderName,
+	  },
+	  content: [
+	    {
+	      type: "text/html",
+	      value: mailText,
+	    }
+	  ]
+	}
+
+	const templateId = Settings.templateId;
+	if (templateId) emailBody.template_id = templateId;
+
+	return emailBody;
 }
 
 function prepareNotificationEmail(reqBody) {
