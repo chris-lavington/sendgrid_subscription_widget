@@ -132,7 +132,7 @@ exports.addUser = function(req, res, next) {
 
 
 
-		console.log('req.body.email: ' +req.body.email);
+		console.log('req.body: ' +req.body);
 		console.log('req.body[0]: ' +req.body[0]);
 
 		const fetch = require('node-fetch');
