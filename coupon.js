@@ -14,12 +14,16 @@ var options = {
   body: dataString
  };
 
-return fetch(url,options)
+fetch(url,options)
   .then(function(res) {
       return res.json();
   }).then(function(json) {
       console.log('json: ' +json);
-      exports.offerCode = json;
+      var ticket = json;
+      var goldenTicket = module.exports = {
+        golden: ticket;
+      }
+    }
   }).catch(function(err) {
       console.log(err);
   });
