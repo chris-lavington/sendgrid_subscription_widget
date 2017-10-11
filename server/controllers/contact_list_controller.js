@@ -54,7 +54,7 @@ function prepareConfirmationEmail(reqBody) {
 function getCoupon() {
     	console.log("Inside doSomething function");
 	const coupon = require("../../coupon.js");
-	let getCoup = coupon.offerCode;
+	var getCoup = coupon.golden;
 	console.log('get coup: ' +getCoup)
 	if(getCoup != undefined) {
 	   return Promise.resolve(getCoup);
