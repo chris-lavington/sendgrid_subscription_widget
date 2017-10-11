@@ -7,7 +7,8 @@ module.exports = function(app) {
 	app.post('/confirmEmail', function(req, res){
 		var user_email = req.body.email;
 		console.log('user EMAIL: ' +user_email);
+		ContactList.sendConfirmation;
+		ContactList.addUser(user_email, req, res);
 	});
-	app.post('/confirmEmail', ContactList.sendConfirmation);
 	app.post('/signup', ContactList.addUser);
 }
