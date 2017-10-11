@@ -10,7 +10,6 @@ function prepareConfirmationEmail(reqBody) {
 	const url = formatUrl(Settings.url) + '/success';
 	const link = "<a href='" + url + "'>this link</a>"
 	const mailText = "Thanks for signing up! Click " + link + " to sign up!  This link will be active for 24 hours.";
-	export const userEmail = reqBody.email;
 
 	var emailBody = {
 	  personalizations: [
@@ -157,7 +156,6 @@ exports.addUser = function(req, res, next) {
 
 
 		    	function prepareOfferCodeEmail(userEmail) {
-					import { userEmail } from 'contact_list_controller.js';
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
 					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
