@@ -55,14 +55,15 @@ function getCoupon() {
     	console.log("Inside doSomething function");
 	const coupon = require("../../coupon.js");
 	let getCoup = coupon.offerCode;
+	console.log('get coup: ' +getCoup)
 	return Promise.resolve(getCoup);
 }
 
 async function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
-	const offerCode = await getCoupon();
-	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
-console.log('offerCodey: ' +offerCode);
+	const couponCode = await getCoupon();
+	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
+console.log('offerCodey: ' +couponCode);
 	var emailBody = {
 	  personalizations: [
 	    {
@@ -73,7 +74,7 @@ console.log('offerCodey: ' +offerCode);
 	      ],
 	      subject: subject,
 	      substitutions: {
-	      	offer_code: offerCode
+	      	offer_code: couponCode
 	      }
 	    },
 	  ],
