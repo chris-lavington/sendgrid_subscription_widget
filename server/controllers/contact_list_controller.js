@@ -53,7 +53,7 @@ function prepareConfirmationEmail(reqBody) {
 
 async function prepareOfferCodeEmail(reqBody) {
 	const subject = "Your Somerset & Wood Offer Code";
-	await import {offerCode} from "../../coupon.js";
+	await const offerCode = require("../../coupon.js");
 	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + offerCode;
 console.log('offerCodey: ' +offerCode)
 	var emailBody = {
