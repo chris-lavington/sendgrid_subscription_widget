@@ -165,7 +165,8 @@ exports.addUser = function(req, res, next) {
 
 
 
-		    	return function prepareOfferCodeEmail(reqBody) {
+		    	function prepareOfferCodeEmail(reqBody) {
+					
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
 					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
@@ -199,22 +200,22 @@ exports.addUser = function(req, res, next) {
 						//const templateId = Settings.templateId;
 						//if (templateId) emailBody.template_id = templateId;
 
-						// Send offer code to customer
-						var request = sg.emptyRequest({
-							method: 'POST',
-							path: '/v3/mail/send',
-							body: emailBody
-						});
-
-						sg.API(request, function(error, response) {
-							if (error) {
-								console.log('Error: ' +error);
-								console.error( 'SENDGRID ERROR', response );
-							}
-						});
+						return emailBody;
 				}
 
+				// Send offer code to customer
+					var request = sg.emptyRequest({
+						method: 'POST',
+						path: '/v3/mail/send',
+						body: prepareOfferCodeEmail()
+					});
 
+					sg.API(request, function(error, response) {
+						if (error) {
+							console.log('Error: ' +error);
+							console.error( 'SENDGRID ERROR', response );
+						}
+					});
 
 
 		  }).catch(function(err) {
