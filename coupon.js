@@ -19,7 +19,7 @@ fetch(url,options)
       return res.json();
   }).then(function(json) {
       console.log('json: ' +json);
-      let offerCode = json;
+      var offerCode = json;
       module.exports = {
         offerCode: offerCode
       };
