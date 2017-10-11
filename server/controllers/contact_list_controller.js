@@ -108,6 +108,7 @@ exports.getEmail = function(req, res, next){
 
 // Create new contact and add contact to given list
 exports.addUser = function(req, res, next) {
+	console.log('req.body1: ' +req.body);
 	addUserToList(req.body[0], function() {
 		//send notification about the new signup
 		if (Settings.sendNotification) {
