@@ -1,5 +1,3 @@
-var fetch = require('node-fetch');
-
 const url = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
 
 var headers = {
