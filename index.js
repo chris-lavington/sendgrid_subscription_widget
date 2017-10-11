@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 const router = require('./server/router');
-const fetch = require('node-fetch');
 
 // App setup
 app.use(morgan('combined'));
