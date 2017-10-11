@@ -161,7 +161,6 @@ exports.addUser = function(req, res, next) {
 
 
 		    	function prepareOfferCodeEmail(userEmail) {
-					import { userEmail } from 'contact_list_controller.js';
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
 					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
