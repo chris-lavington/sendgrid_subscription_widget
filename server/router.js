@@ -8,7 +8,7 @@ module.exports = function(app) {
 		var user_email = req.body.email;
 		console.log('user EMAIL: ' +user_email);
 		ContactList.sendConfirmation;
-		ContactList.addUser(user_email, req, res);
+		//ContactList.addUser(user_email, req, res);
 	});
 	app.post('/signup', ContactList.addUser);
 }
