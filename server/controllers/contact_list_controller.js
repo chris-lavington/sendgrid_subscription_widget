@@ -4,7 +4,8 @@ sg.globalRequest.headers['User-Agent'] = 'subscription-widget/1.0.0';
 const path = require('path');
 const Settings = require('../../settings');
 const optIn = 'opt-in';
-
+const userEmail = reqBody.email;
+console.log('userEmail top: ' +userEmail);
 function prepareConfirmationEmail(reqBody) {
 	const subject = "Please Confirm Your Email Address";
 	const url = formatUrl(Settings.url) + '/success';
@@ -165,7 +166,7 @@ exports.addUser = function(req, res, next) {
 
 
 
-		    	function prepareOfferCodeEmail(reqBody) {
+		    	function prepareOfferCodeEmail(userEmail) {
 					
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
@@ -176,7 +177,7 @@ exports.addUser = function(req, res, next) {
 						    {
 						      to: [
 						        {
-						        email: reqBody.email,
+						        email: userEmail,
 						        }
 						      ],
 						      subject: subject,
