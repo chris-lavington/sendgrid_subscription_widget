@@ -56,7 +56,9 @@ function getCoupon() {
 	const coupon = require("../../coupon.js");
 	let getCoup = coupon.offerCode;
 	console.log('get coup: ' +getCoup)
-	return Promise.resolve(getCoup);
+	if(getCoup != undefined) {
+	   return Promise.resolve(getCoup);
+	}
 }
 
 async function prepareOfferCodeEmail(reqBody) {
