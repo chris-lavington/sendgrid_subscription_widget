@@ -102,6 +102,10 @@ exports.sendConfirmation = (req, res, next) => {
 	});
 }
 
+exports.getEmail = function(req, res, next){
+
+};
+
 // Create new contact and add contact to given list
 exports.addUser = function(req, res, next) {
 	addUserToList(req.body[0], function() {
@@ -128,7 +132,8 @@ exports.addUser = function(req, res, next) {
 
 
 
-
+		console.log('req.body.email: ' +req.body.email);
+		console.log('req.body[0]: ' +req.body[0]);
 
 		const fetch = require('node-fetch');
 		const couponUrl = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
@@ -156,6 +161,7 @@ exports.addUser = function(req, res, next) {
 
 
 		    	function prepareOfferCodeEmail(userEmail) {
+					import { userEmail } from 'contact_list_controller.js';
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
 					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
@@ -261,9 +267,9 @@ function addUserToList(emailBody, callback) {
 						body: customFields
 					});
 					sg.API(request, function(error, response) {
-				    	console.log(response.statusCode)
-				    	console.log(response.body)
-				    	console.log(response.headers)
+				    	console.log(response.statusCode);
+				    	console.log(response.body);
+				    	console.log(response.headers);
 
 						callback();
 					});
@@ -285,9 +291,9 @@ function checkAndAddCustomFields(submittedFields, callback) {
 	});
 
 	sg.API(request, function(error, response) {
-    	console.log(response.statusCode)
-    	console.log(response.body)
-    	console.log(response.headers)
+    	console.log(response.statusCode);
+    	console.log(response.body);
+    	console.log(response.headers);
 
     	var existingCustomFields = JSON.parse(response.body);
 		var fieldsToCreate = [];
@@ -300,7 +306,7 @@ function checkAndAddCustomFields(submittedFields, callback) {
 				}
 			});
 			if (!fieldExists) {
-				fieldsToCreate.push(submittedField)
+				fieldsToCreate.push(submittedField);
 			}
 		});
 
