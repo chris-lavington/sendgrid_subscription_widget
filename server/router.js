@@ -6,7 +6,7 @@ module.exports = function(app) {
 	app.get('/success', function(req, res) { res.sendFile(path.join(__dirname, '/static/success.html')) });
 	app.post('/confirmEmail', function(req, res){
 		var user_email = req.body.email;
-		console,log('user EMAIL: ' +user_email);
+		console.log('user EMAIL: ' +user_email);
 	});
 	app.post('/confirmEmail', ContactList.sendConfirmation);
 	app.post('/signup', ContactList.addUser);
