@@ -14,7 +14,7 @@ var options = {
   body: dataString
  };
 
-fetch(url,options)
+return fetch(url,options)
   .then(function(res) {
       return res.json();
   }).then(function(json) {
