@@ -165,7 +165,7 @@ exports.addUser = function(req, res, next) {
 
 
 
-		    	function prepareOfferCodeEmail(reqBody) {
+		    	return function prepareOfferCodeEmail(reqBody) {
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
 					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
