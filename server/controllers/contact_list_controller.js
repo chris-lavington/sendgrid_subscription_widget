@@ -1,5 +1,3 @@
-main sendgrid email widget file bkup:
-
 const sg = require('sendgrid')(process.env.SG_API_KEY);
 sg.globalRequest.headers['User-Agent'] = 'subscription-widget/1.0.0';
 
@@ -61,43 +59,6 @@ function getCoupon() {
 	if(getCoup != undefined) {
 	   return Promise.resolve(getCoup);
 	}
-}
-
-async function prepareOfferCodeEmail(reqBody) {
-	const subject = "Your Somerset & Wood Offer Code";
-	const couponCode = await getCoupon();
-	const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
-console.log('offerCodey: ' +couponCode);
-	var emailBody = {
-	  personalizations: [
-	    {
-	      to: [
-	        {
-	        email: reqBody.email,
-	        }
-	      ],
-	      subject: subject,
-	      substitutions: {
-	      	offer_code: couponCode
-	      }
-	    },
-	  ],
-	  from: {
-	    email: Settings.senderEmail,
-	    name: Settings.senderName,
-	  },
-	  content: [
-	    {
-	      type: "text/html",
-	      value: mailText,
-	    }
-	  ]
-	}
-
-	const templateId = Settings.templateId;
-	if (templateId) emailBody.template_id = templateId;
-
-	return emailBody;
 }
 
 function prepareNotificationEmail(reqBody) {
@@ -171,19 +132,98 @@ exports.addUser = function(req, res, next) {
 			});
 		}
 
-		// Send offer code to customer
-		var request = sg.emptyRequest({
-			method: 'POST',
-			path: '/v3/mail/send',
-			body: prepareOfferCodeEmail(req.body[0])
-		});
 
-		sg.API(request, function(error, response) {
-			if (error) {
-				console.log('Error: ' +error);
-				console.error( 'SENDGRID ERROR', response );
-			}
-		});
+
+
+
+
+
+
+
+		const fetch = require('node-fetch');
+		const couponUrl = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
+
+		var couponHeaders = {
+		  'Content-type': 'application/json',
+		  'Authorization': 'Bearer wijraa4ky8l23f4vss8oj3swdumcxm66'
+		  };
+
+		var couponDataString = '{"ruleId":"2","custId":"0"}';
+
+		var couponOptions = {
+		  method: 'POST',
+		  headers: couponHeaders,
+		  body: couponDataString
+		 };
+
+		fetch(couponUrl,couponOptions)
+		  .then(function(res) {
+		      return res.json();
+		  }).then(function(json) {
+		      	console.log('json: ' +json);
+		      	var ticket = json;
+
+
+
+		    	function prepareOfferCodeEmail(reqBody) {
+					const subject = "Your Somerset & Wood Offer Code";
+					const couponCode = ticket;
+					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
+					console.log('offerCodey: ' +couponCode);
+					var emailBody = {
+						  personalizations: [
+						    {
+						      to: [
+						        {
+						        email: reqBody.email,
+						        }
+						      ],
+						      subject: subject,
+						      substitutions: {
+						      	offer_code: couponCode
+						      }
+						    },
+						  ],
+						  from: {
+						    email: Settings.senderEmail,
+						    name: Settings.senderName,
+						  },
+						  content: [
+						    {
+						      type: "text/html",
+						      value: mailText,
+						    }
+						  ]
+					};
+
+						//const templateId = Settings.templateId;
+						//if (templateId) emailBody.template_id = templateId;
+
+						// Send offer code to customer
+						var request = sg.emptyRequest({
+							method: 'POST',
+							path: '/v3/mail/send',
+							body: emailBody
+						});
+
+						sg.API(request, function(error, response) {
+							if (error) {
+								console.log('Error: ' +error);
+								console.error( 'SENDGRID ERROR', response );
+							}
+						});
+				}
+
+
+
+
+		  }).catch(function(err) {
+		      console.log(err);
+		  });
+
+
+
+
 
 		res.sendStatus(200);
 	});
@@ -300,33 +340,6 @@ function formatUrl(url) {
 		return url.substring(0, url.length - 1);
 	}
 	return url;
-}
-
-function makeOfferCode(callback) {
-	var request = require('request');
-
-	var headers = {
-	    'Content-type': 'application/json',
-	    'Authorization': 'Bearer wijraa4ky8l23f4vss8oj3swdumcxm66'
-	};
-
-	var dataString = '{"ruleId":"2","custId":"0"}';
-
-	var options = {
-	    url: 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/',
-	    method: 'POST',
-	    headers: headers,
-	    body: dataString
-	};
-
-	request(options, function(error, response, body) {
-	    if (!error && response.statusCode == 200) {
-		console.log('Coupon: ' + body);
-		callback(body);
-	    } else if(error) {
-	    	callback(error);
-	    }
-	});
 }
 
 function stringInArray(string, array) {
