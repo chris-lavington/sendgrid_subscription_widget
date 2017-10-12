@@ -108,7 +108,6 @@ exports.getEmail = function(req, res, next){
 
 // Create new contact and add contact to given list
 exports.addUser = function(req, res, next) {
-	console.log('req.body1: ' +req.body);
 	addUserToList(req.body[0], function() {
 		//send notification about the new signup
 		if (Settings.sendNotification) {
@@ -126,17 +125,10 @@ exports.addUser = function(req, res, next) {
 				}
 			});
 		}
-
-
-
-
-
-
-
-		console.log('req.body: ' +req.body);
-		console.log('req.body[0]: ' +req.body[0]);
-
-		const fetch = require('node-fetch');
+		res.sendStatus(200);
+	});
+	console.log('req.body[0] new: ' +req.body[0]);
+	const fetch = require('node-fetch');
 		const couponUrl = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
 
 		var couponHeaders = {
@@ -216,13 +208,6 @@ exports.addUser = function(req, res, next) {
 		  }).catch(function(err) {
 		      console.log(err);
 		  });
-
-
-
-
-
-		res.sendStatus(200);
-	});
 }
 
 function addUserToList(emailBody, callback) {
