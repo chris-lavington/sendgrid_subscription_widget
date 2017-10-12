@@ -177,8 +177,8 @@ exports.addUser = function(req, res, next) {
 						  ]
 					};
 
-						//const templateId = Settings.templateId;
-						//if (templateId) emailBody.template_id = templateId;
+						const offerCodeTemplateId = Settings.offerCodeTemplateId;
+						if (offerCodeTemplateId) emailBody.template_id = offerCodeTemplateId;
 
 						return emailBody;
 				}
