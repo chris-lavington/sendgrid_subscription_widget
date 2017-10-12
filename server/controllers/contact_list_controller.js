@@ -128,6 +128,7 @@ exports.addUser = function(req, res, next) {
 		res.sendStatus(200);
 	});
 	console.log('req.body[0] new: ' +req.body[0].email);
+	var user_email = req.body[0].email;
 	const fetch = require('node-fetch');
 		const couponUrl = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
 
@@ -153,7 +154,7 @@ exports.addUser = function(req, res, next) {
 
 
 
-		    	function prepareOfferCodeEmail(userEmail) {
+		    	function prepareOfferCodeEmail() {
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
 					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
@@ -163,7 +164,7 @@ exports.addUser = function(req, res, next) {
 						    {
 						      to: [
 						        {
-						        email: userEmail,
+						        email: user_email,
 						        }
 						      ],
 						      subject: subject,
