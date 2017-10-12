@@ -39,7 +39,7 @@ function prepareConfirmationEmail(reqBody) {
 	      value: mailText,
 	    }
 	  ]
-	}
+	};
 
 	const templateId = Settings.templateId;
 	if (templateId) emailBody.template_id = templateId;
@@ -47,13 +47,12 @@ function prepareConfirmationEmail(reqBody) {
 	for (key in reqBody) {
 		emailBody.personalizations[0].custom_args[key] = reqBody[key];
 	}
-
 	return emailBody;
 }
 
 function prepareNotificationEmail(reqBody) {
 	const subject = "New email signup";
-	const mailText = "A new person just confirmed they would look to receive your emails via your email subscription widget.<br/><b>Name: </b>" + reqBody.first_name + " " + reqBody.last_name + "<br/><b>Email: </b>" + reqBody.email;
+	const mailText = "A new person just confirmed they would look to receive your emails via your email subscription widget. <b>Email: </b>" + reqBody.email;
 
 	var emailBody = {
 	  personalizations: [
@@ -76,7 +75,7 @@ function prepareNotificationEmail(reqBody) {
 	      value: mailText,
 	    }
 	  ],
-	}
+	};
 
 	return emailBody;
 }
@@ -100,10 +99,6 @@ exports.sendConfirmation = (req, res, next) => {
 			res.sendFile(path.join(__dirname, '../static/error.html'));
 		}
 	});
-}
-
-exports.getEmail = function(req, res, next){
-
 };
 
 // Create new contact and add contact to given list
@@ -152,13 +147,10 @@ exports.addUser = function(req, res, next) {
 		      	console.log('json: ' +json);
 		      	var ticket = json;
 
-
-
 		    	function prepareOfferCodeEmail() {
 					const subject = "Your Somerset & Wood Offer Code";
 					const couponCode = ticket;
 					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
-					console.log('offerCodey: ' +couponCode);
 					var emailBody = {
 						  personalizations: [
 						    {
@@ -204,15 +196,13 @@ exports.addUser = function(req, res, next) {
 							console.error( 'SENDGRID ERROR', response );
 						}
 					});
-
-
+					
 		  }).catch(function(err) {
 		      console.log(err);
 		  });
 }
 
 function addUserToList(emailBody, callback) {
-	console.log(emailBody);
 
 	var ignoreFields = ['ip', 'sg_event_id', 'sg_message_id', 'useragent', 'event',
 		'url_offset', 'time_sent', 'timestamp', 'url', 'type', 'smtp-id'];
