@@ -122,7 +122,6 @@ exports.addUser = function(req, res, next) {
 		}
 		res.sendStatus(200);
 	});
-	console.log('req.body[0] new: ' +req.body[0].email);
 	var user_email = req.body[0].email;
 	const fetch = require('node-fetch');
 		const couponUrl = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
