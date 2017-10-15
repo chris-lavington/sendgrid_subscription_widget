@@ -122,83 +122,85 @@ exports.addUser = function(req, res, next) {
 		}
 		res.sendStatus(200);
 	});
-	var user_email = req.body[0].email;
+	var userEmail = req.body[0].email;
+	const userType = req.body[0].type;
+console.log('user type: ' +userType);
 	const fetch = require('node-fetch');
-		const couponUrl = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
+	const couponUrl = 'https://lovelycards.co.uk/rest/V1/bangerkuwranger/couponcode/getCouponCode/';
 
-		var couponHeaders = {
-		  'Content-type': 'application/json',
-		  'Authorization': 'Bearer wijraa4ky8l23f4vss8oj3swdumcxm66'
-		  };
+	var couponHeaders = {
+	  'Content-type': 'application/json',
+	  'Authorization': 'Bearer wijraa4ky8l23f4vss8oj3swdumcxm66'
+	  };
 
-		var couponDataString = '{"ruleId":"2","custId":"0"}';
+	var couponDataString = '{"ruleId":"2","custId":"0"}';
 
-		var couponOptions = {
-		  method: 'POST',
-		  headers: couponHeaders,
-		  body: couponDataString
-		 };
+	var couponOptions = {
+	  method: 'POST',
+	  headers: couponHeaders,
+	  body: couponDataString
+	 };
 
-		fetch(couponUrl,couponOptions)
-		  .then(function(res) {
-		      return res.json();
-		  }).then(function(json) {
-		      	console.log('json: ' +json);
-		      	var ticket = json;
+	fetch(couponUrl,couponOptions)
+	  .then(function(res) {
+	      return res.json();
+	  }).then(function(json) {
+		console.log('json: ' +json);
+		var ticket = json;
 
-		    	function prepareOfferCodeEmail() {
-					const subject = "Your Somerset & Wood Offer Code";
-					const couponCode = ticket;
-					const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
-					var emailBody = {
-						  personalizations: [
-						    {
-						      to: [
-						        {
-						        email: user_email,
-						        }
-						      ],
-						      subject: subject,
-						      substitutions: {
-						      	offer_code: couponCode
-						      }
-						    },
-						  ],
-						  from: {
-						    email: Settings.senderEmail,
-						    name: Settings.senderName,
-						  },
-						  content: [
-						    {
-						      type: "text/html",
-						      value: mailText,
-						    }
-						  ]
-					};
-
-						const offerCodeTemplateId = Settings.offerCodeTemplateId;
-						if (offerCodeTemplateId) emailBody.template_id = offerCodeTemplateId;
-
-						return emailBody;
-				}
-
-				// Send offer code to customer
-					var request = sg.emptyRequest({
-						method: 'POST',
-						path: '/v3/mail/send',
-						body: prepareOfferCodeEmail()
-					});
-
-					sg.API(request, function(error, response) {
-						if (error) {
-							console.log('Error: ' +error);
-							console.error( 'SENDGRID ERROR', response );
+		function prepareOfferCodeEmail() {
+				const subject = "Your Somerset & Wood Offer Code";
+				const couponCode = ticket;
+				const mailText = "Thanks for signing up! Here is your offer code to use during checkout: " + couponCode;
+				var emailBody = {
+					  personalizations: [
+					    {
+					      to: [
+						{
+						email: userEmail,
 						}
-					});
-					
-		  }).catch(function(err) {
-		      console.log(err);
-		  });
+					      ],
+					      subject: subject,
+					      substitutions: {
+						offer_code: couponCode
+					      }
+					    },
+					  ],
+					  from: {
+					    email: Settings.senderEmail,
+					    name: Settings.senderName,
+					  },
+					  content: [
+					    {
+					      type: "text/html",
+					      value: mailText,
+					    }
+					  ]
+				};
+
+					const offerCodeTemplateId = Settings.offerCodeTemplateId;
+					if (offerCodeTemplateId) emailBody.template_id = offerCodeTemplateId;
+
+					return emailBody;
+			}
+
+			// Send offer code to customer
+			var request = sg.emptyRequest({
+				method: 'POST',
+				path: '/v3/mail/send',
+				body: prepareOfferCodeEmail()
+			});
+
+			sg.API(request, function(error, response) {
+				if (error) {
+					console.log('Error: ' +error);
+					console.error( 'SENDGRID ERROR', response );
+				}
+			});
+
+	  }).catch(function(err) {
+	      console.log(err);
+	  });
 }
 
 function addUserToList(emailBody, callback) {
