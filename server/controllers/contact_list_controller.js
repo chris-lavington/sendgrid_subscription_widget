@@ -105,7 +105,7 @@ exports.sendConfirmation = (req, res, next) => {
 exports.addUser = function(req, res, next) {
 	addUserToList(req.body[0], function() {
 		//send notification about the new signup
-		if (Settings.sendNotification) {
+		if (Settings.sendNotification && req.body[0].type=='opt-in') {
 			console.log("Sending notification");
 
 			var request = sg.emptyRequest({
