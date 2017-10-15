@@ -183,20 +183,22 @@ console.log('user type: ' +userType);
 
 					return emailBody;
 			}
+			
+			if(userType =='opt-in') {
+				// Send offer code to customer
+				var request = sg.emptyRequest({
+					method: 'POST',
+					path: '/v3/mail/send',
+					body: prepareOfferCodeEmail()
+				});
 
-			// Send offer code to customer
-			var request = sg.emptyRequest({
-				method: 'POST',
-				path: '/v3/mail/send',
-				body: prepareOfferCodeEmail()
-			});
-
-			sg.API(request, function(error, response) {
-				if (error) {
-					console.log('Error: ' +error);
-					console.error( 'SENDGRID ERROR', response );
-				}
-			});
+				sg.API(request, function(error, response) {
+					if (error) {
+						console.log('Error: ' +error);
+						console.error( 'SENDGRID ERROR', response );
+					}
+				});
+			}	
 
 	  }).catch(function(err) {
 	      console.log(err);
