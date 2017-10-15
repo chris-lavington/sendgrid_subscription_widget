@@ -184,7 +184,7 @@ console.log('user type: ' +userType);
 					return emailBody;
 			}
 			
-			//if(userType =='opt-in') {
+			if(userType =='opt-in') {
 				// Send offer code to customer
 				var request = sg.emptyRequest({
 					method: 'POST',
@@ -198,7 +198,7 @@ console.log('user type: ' +userType);
 						console.error( 'SENDGRID ERROR', response );
 					}
 				});
-			//}	
+			}	
 
 	  }).catch(function(err) {
 	      console.log(err);
