@@ -215,7 +215,7 @@ function addUserToList(emailBody, callback) {
 	for (key in emailBody) {
 		if (!stringInArray(key, ignoreFields)) {
 			customFields[0][key] = emailBody[key];
-			if (key != 'email' && key != 'first_name' && key != 'last_name') {
+			if (key != 'email') {
 				customFieldArr.push(key);
 			}
 		}
