@@ -129,7 +129,7 @@ exports.addUser = function(req, res, next) {
 
 	var couponHeaders = {
 	  'Content-type': 'application/json',
-	  'Authorization': 'Bearer wijraa4ky8l23f4vss8oj3swdumcxm66'
+	  'Authorization': 'Bearer v9fwicxjmg6nq381do0ejirh5jr0ckyv'
 	  };
 
 	var couponDataString = '{"ruleId":"2","custId":"0"}';
